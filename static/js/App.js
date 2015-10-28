@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import { setName, setTime } from './actions';
 
 class App extends Component {
@@ -27,11 +28,11 @@ class App extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        name: state.name,
-        time: state.time
-    };
-}
+const nameStateSelector = (state) => state.name;
+const timeStateSelector = (state) => state.time;
 
-export default connect(mapStateToProps)(App);
+const rootSelector = createSelector([nameStateSelector, timeStateSelector], (name, time) => {
+    return { name, time };
+});
+
+export default connect(rootSelector)(App);
