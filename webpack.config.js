@@ -39,7 +39,7 @@ module.exports = {
             test: /\.(js|jsx)?$/,
             exclude: /node_modules/,
             loaders: getJSLoaders([
-                'babel'
+                'babel-loader?presets[]=es2015,presets[]=react&+cacheDirectory'
             ])
         }]
     },
