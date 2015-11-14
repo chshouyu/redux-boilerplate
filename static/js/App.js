@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { setName, setTime } from './actions';
+import { setName } from './actions';
 
 class App extends Component {
-
-    componentDidMount () {
-        const { dispatch } = this.props;
-        dispatch(setTime());
-    }
 
     clickHandler (e) {
         const { dispatch, name } = this.props;
@@ -17,11 +12,10 @@ class App extends Component {
     }
 
     render () {
-        const { name, time } = this.props;
+        const { name } = this.props;
         return (
             <div>
                 <p>{name}</p>
-                <p>{time}</p>
                 <a href="javascript:;" onClick={this.clickHandler.bind(this)}>click</a>
             </div>
         );
@@ -29,10 +23,9 @@ class App extends Component {
 }
 
 const nameStateSelector = (state) => state.name;
-const timeStateSelector = (state) => state.time;
 
-const rootSelector = createSelector([nameStateSelector, timeStateSelector], (name, time) => {
-    return { name, time };
+const rootSelector = createSelector([nameStateSelector], (name) => {
+    return { name };
 });
 
 export default connect(rootSelector)(App);

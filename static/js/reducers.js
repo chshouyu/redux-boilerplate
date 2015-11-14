@@ -1,4 +1,4 @@
-import { SET_NAME, SET_TIME } from './actions';
+import { SET_NAME } from './actions';
 import { combineReducers } from 'redux';
 
 function name(state = 'chen', action) {
@@ -10,18 +10,8 @@ function name(state = 'chen', action) {
     }
 }
 
-function time(state = +new Date(), action) {
-    switch (action.type) {
-        case SET_TIME:
-            return +new Date();
-        default:
-            return state;
-    }
-}
-
 const rootReducer = combineReducers({
-    name,
-    time
+    name
 });
 
 export default rootReducer;
