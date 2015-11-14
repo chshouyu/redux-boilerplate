@@ -13,10 +13,11 @@ function getEntrySources(sources) {
     return sources;
 }
 
-var jsLoaders = ['babel'];
-
-if (!isProduction) {
-    jsLoaders.unshift('react-hot');
+function getJSLoaders(loaders) {
+    if (!isProduction) {
+        loaders.unshift('react-hot');
+    }
+    return loaders;
 }
 
 module.exports = {
@@ -37,7 +38,9 @@ module.exports = {
         loaders: [{
             test: /\.(js|jsx)?$/,
             exclude: /node_modules/,
-            loaders: jsLoaders
+            loaders: getJSLoaders([
+                'babel'
+            ])
         }]
     },
     plugins: [
